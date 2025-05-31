@@ -2,9 +2,12 @@ version: "3.7"
 
 services:
   server:
-    image: gandlaf21/cdk-app:0.0.1
+    build: .
     restart: on-failure
     stop_grace_period: 5s
     ports: 
       - "6754:3000"
-  
+    volumes: 
+      - ${PWD}/data/config/config.toml:/app/config.toml
+    environment:
+      - CONFIG_PATH=/app/config.toml
